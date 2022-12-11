@@ -29,6 +29,7 @@ $emailQueue->setFlags(AMQP_DURABLE);
 $emailQueue->declareQueue();
 $emailQueue->bind($exchangeName);
 
+echo "publish to fanout exchange message: foobar\n";
 $fanoutExchange->publish('foobar');
 
 

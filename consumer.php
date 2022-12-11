@@ -1,7 +1,7 @@
 <?php
 
 $connection = new AMQPConnection([
-    'host' => 'localhost',
+    'host' => 'test-rabbitmq',
     'port' => 5672,
     'login' => 'guest',
     'password' => 'guest'
@@ -13,7 +13,11 @@ $channel = new \AMQPChannel($connection);
 $smsQueue = new \AMQPQueue($channel);
 $smsQueue->setName('Sms queue');
 
-$smsQueue->consume(function (\AMQPEnvelope $envelope, \AMQPQueue $queue) {
-    var_dump($envelope->getBody());
-    $queue->ack($envelope->getDeliveryTag());
-});
+echo "reading form queue: Sms queue...\n";
+$envelope = $smsQueue->get();
+
+if ($envelope === false) {
+    return;
+}
+var_dump($envelope->getBody());
+$smsQueue->ack($envelope->getDeliveryTag());

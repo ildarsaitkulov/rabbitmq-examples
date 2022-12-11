@@ -29,7 +29,10 @@ $emailQueue->setFlags(AMQP_DURABLE);
 $emailQueue->declareQueue();
 $emailQueue->bind($exchangeName, 'email');
 
+echo "publish to direct exchange message: foobar routing_key: sms\n";
 $directExchange->publish('foobar', 'sms');
+
+echo "publish to direct exchange message: foobar routing_key: email\n";
 $directExchange->publish('foobar', 'email');
 
 
