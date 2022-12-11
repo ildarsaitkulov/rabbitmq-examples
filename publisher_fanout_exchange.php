@@ -10,11 +10,11 @@ $connection = new AMQPConnection([
 $connection->connect();
 
 $channel = new \AMQPChannel($connection);
-$directExchange = new \AMQPExchange($channel);
+$fanoutExchange = new \AMQPExchange($channel);
 $exchangeName = 'test_fanout_exchange';
-$directExchange->setName($exchangeName);
-$directExchange->setType(AMQP_EX_TYPE_FANOUT);
-$directExchange->declareExchange();
+$fanoutExchange->setName($exchangeName);
+$fanoutExchange->setType(AMQP_EX_TYPE_FANOUT);
+$fanoutExchange->declareExchange();
 
 
 $smsQueue = new \AMQPQueue($channel);
@@ -29,7 +29,7 @@ $emailQueue->setFlags(AMQP_DURABLE);
 $emailQueue->declareQueue();
 $emailQueue->bind($exchangeName);
 
-$directExchange->publish('foobar');
+$fanoutExchange->publish('foobar');
 
 
 
