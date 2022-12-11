@@ -13,7 +13,7 @@ $channel = new \AMQPChannel($connection);
 $smsQueue = new \AMQPQueue($channel);
 $smsQueue->setName('Sms queue');
 
-echo "reading form queue: Sms queue...\n";
+echo "reading form queue: Sms queue...<br>";
 $envelope = $smsQueue->get();
 
 if ($envelope === false) {

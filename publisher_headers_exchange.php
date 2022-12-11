@@ -45,10 +45,10 @@ $allMessagesQueue->bind($exchangeName, null, [
     'type' => 'email',
 ]);
 
-echo "publish to header exchange message: foobar, headers:{type:email}\n";
+echo "publish to header exchange message: foobar, headers:{type:email}<br>";
 $headersExchange->publish('foobar', null, AMQP_NOPARAM, ['headers' => ['type' => 'email']]);
 
-echo "publish to header exchange message: foobar, headers:{type:sms}\n";
+echo "publish to header exchange message: foobar, headers:{type:sms}<br>";
 $headersExchange->publish('foobar', null, AMQP_NOPARAM, ['headers' => ['type' => 'sms']]);
 
 

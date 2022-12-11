@@ -35,10 +35,10 @@ $allMessagesQueue->setFlags(AMQP_DURABLE);
 $allMessagesQueue->declareQueue();
 $allMessagesQueue->bind($exchangeName, 'message.*');
 
-echo "publish to topic exchange message: foobar routing_key: message.sms\n";
+echo "publish to topic exchange message: foobar, routing_key: message.sms<br>";
 $topicExchange->publish('foobar', 'message.sms');
 
-echo "publish to topic exchange message: foobar routing_key: message.email\n";
+echo "publish to topic exchange message: foobar, routing_key: message.email<br>";
 $topicExchange->publish('foobar', 'message.email');
 
 
