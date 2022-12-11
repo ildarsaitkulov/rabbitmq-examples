@@ -1,10 +1,30 @@
 version: '3'
 
 services:
-  rabbitmq:
+  test-rabbitmq:
     container_name: test-rabbitmq
     image: rabbitmq:management-alpine
     restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - test-network
     ports:
       - "15672:15672"
       - "5672:5672"
+  test-php:
+    container_name: test-php
+    build:
+      context: .
+      dockerfile: dockerFiles/php/Dockerfile
+    restart: unless-stopped
+    networks:
+      - test-network
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/opt/rabbitmq-examples
+networks:
+  test-network:
+    driver: bridge

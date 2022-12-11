@@ -1,7 +1,7 @@
 <?php
 
 $connection = new AMQPConnection([
-    'host' => 'localhost',
+    'host' => 'test-rabbitmq',
     'port' => 5672,
     'login' => 'guest',
     'password' => 'guest'
