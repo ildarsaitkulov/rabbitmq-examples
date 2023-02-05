@@ -6,7 +6,7 @@
 Для запуска примеров у вас должен быть установлен [docker-compose](https://docs.docker.com/compose/install/)
 
 ### Подготовка
-
+Запустим докер контейнеры с RabbitMQ и сервисом для исполнения PHP скриптов
 ```bash
 git clone https://github.com/ildarsaitkulov/rabbitmq-examples
 cd rabbitmq-examples && docker-compose up --build
